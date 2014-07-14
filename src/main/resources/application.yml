@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eureka
+management:
+  context-path: /admin
+eureka:
+  server:
+    waitTimeInMsWhenSyncEmpty: 1000
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/v2/
+      default.defaultZone: http://localhost:8080/v2/
+    registerWithEureka: false
+    fetchRegistry: false
