@@ -10,21 +10,13 @@ import org.cloudfoundry.community.servicebroker.service.ServiceInstanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Mongo impl to manage service instances.  Creating a service does the following:
- * creates a new database,
- * saves the ServiceInstance info to the Mongo repository.
- *  
- * @author sgreenberg@gopivotal.com
- *
- */
 @Service
-public class MongoServiceInstanceService implements ServiceInstanceService {
+public class SimpleServiceInstanceService implements ServiceInstanceService {
 
-	private MongoServiceInstanceRepository repository;
+	private ServiceInstanceRepository repository;
 	
 	@Autowired
-	public MongoServiceInstanceService(MongoServiceInstanceRepository repository) {
+	public SimpleServiceInstanceService(ServiceInstanceRepository repository) {
 		this.repository = repository;
 	}
 	
@@ -38,7 +30,6 @@ public class MongoServiceInstanceService implements ServiceInstanceService {
 			String serviceInstanceId, String planId, String organizationGuid,
 			String spaceGuid) 
 			throws ServiceInstanceExistsException, ServiceBrokerException {
-		// TODO MongoDB dashboard
 		ServiceInstance instance = repository.findOne(serviceInstanceId);
 		if (instance != null) {
 			throw new ServiceInstanceExistsException(instance);

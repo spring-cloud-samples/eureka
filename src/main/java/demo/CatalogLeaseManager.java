@@ -38,8 +38,9 @@ public class CatalogLeaseManager implements LeaseManager<InstanceInfo>, LeaseMan
 
 	private Catalog catalog;
 
-	public CatalogLeaseManager(Catalog catalog) {
+	public CatalogLeaseManager(Catalog catalog, InstanceInfo config) {
 		this.catalog = catalog;
+		register(config, false);
 	}
 
 	@Override

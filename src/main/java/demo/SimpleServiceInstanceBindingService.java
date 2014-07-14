@@ -22,13 +22,13 @@ import com.netflix.appinfo.InstanceInfo;
  *
  */
 @Service
-public class MongoServiceInstanceBindingService implements ServiceInstanceBindingService {
+public class SimpleServiceInstanceBindingService implements ServiceInstanceBindingService {
 
-	private MongoServiceInstanceBindingRepository repository;
+	private ServiceInstanceBindingRepository repository;
 	private Catalog catalog;
 	
 	@Autowired
-	public MongoServiceInstanceBindingService(Catalog catalog, MongoServiceInstanceBindingRepository repository) {
+	public SimpleServiceInstanceBindingService(Catalog catalog, ServiceInstanceBindingRepository repository) {
 		this.catalog = catalog;
 		this.repository = repository;
 	}

@@ -22,6 +22,9 @@ import org.springframework.platform.netflix.eureka.EurekaRegistryAvailableEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
+import com.netflix.appinfo.EurekaInstanceConfig;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.appinfo.providers.EurekaConfigBasedInstanceInfoProvider;
 import com.netflix.eureka.PeerAwareInstanceRegistry;
 import com.netflix.eureka.lease.LeaseManager;
 import com.sun.jersey.spi.container.servlet.ServletContainer;
@@ -45,12 +48,15 @@ public class Application {
 		@Autowired
 		private Catalog catalog;
 
+		@Autowired
+		private InstanceInfo instance;
+
 		@Override
 		public void onApplicationEvent(EurekaRegistryAvailableEvent event) {
 			ProxyFactory factory = new ProxyFactory(
 					PeerAwareInstanceRegistry.getInstance());
 			factory.addAdvice(new PiggybackMethodInterceptor(new CatalogLeaseManager(
-					catalog), LeaseManager.class, LeaseManagerLite.class));
+					catalog, instance), LeaseManager.class, LeaseManagerLite.class));
 			factory.setProxyTargetClass(true);
 			Field field = ReflectionUtils.findField(PeerAwareInstanceRegistry.class,
 					"instance");
@@ -68,10 +74,25 @@ public class Application {
 		}
 
 	}
+	
+	@Bean
+	public SimpleServiceInstanceRepository serviceInstanceRepository() {
+		return new SimpleServiceInstanceRepository();
+	}
+
+	@Bean
+	public SimpleServiceInstanceBindingRepository serviceInstanceBindingRepository() {
+		return new SimpleServiceInstanceBindingRepository();
+	}
 
 	@Bean
 	public Catalog catalog() {
 		return new Catalog(new ArrayList<ServiceDefinition>());
+	}
+	
+	@Bean
+	public InstanceInfo instanceInfo(EurekaInstanceConfig config) {
+		return new EurekaConfigBasedInstanceInfoProvider(config).get();
 	}
 
 	@Bean
