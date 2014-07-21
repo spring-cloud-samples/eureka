@@ -1,13 +1,16 @@
+server:
+  port: 8761
+
 management:
   context-path: /admin
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8080/v2/
-      default.defaultZone: http://localhost:8080/v2/
     registerWithEureka: false
     fetchRegistry: false
   instance:
     statusPageUrlPath: /admin/info
     healthCheckUrlPath: /admin/health
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+    
