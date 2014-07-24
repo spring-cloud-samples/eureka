@@ -8,7 +8,11 @@ if ! which cf; then
     export PATH=./cf:$PATH
 fi
 
-DOMAIN=${DOMAIN:-23.23.221.131.xip.io}
+if [ "$APP" == "" ]; then
+    echo "Please set env var APP (the application name)"
+    exit 1
+fi
+DOMAIN=${DOMAIN:-54.235.204.114.xip.io}
 TARGET=api.${DOMAIN}
 
 cf api | grep ${TARGET} || cf api ${TARGET} --skip-ssl-validation
@@ -22,9 +26,7 @@ function deploy() {
     cf push $APP -p $APP_HOME/target/*.jar --no-start
     cf env $APP | grep SPRING_PROFILES_ACTIVE || cf set-env $APP SPRING_PROFILES_ACTIVE cloud
 
-    if [ "$APP" != "eureka" ]; then
-        cf services | grep eureka && cf bind-service $APP eureka
-    fi
+    cf services | grep eureka && cf bind-service $APP eureka
     if [ "$APP" != "configserver" ]; then
         cf services | grep configserver && cf bind-service $APP configserver
     fi
@@ -42,5 +44,5 @@ function deploy() {
 
 }
 
-deploy $*
+deploy $APP .
 
