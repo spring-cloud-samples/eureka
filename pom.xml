@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.demo</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>eureka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>demo</name>
-	<description>Demo project</description>
+	<name>Eureka Server</name>
+	<description>Eureka Server demo project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
