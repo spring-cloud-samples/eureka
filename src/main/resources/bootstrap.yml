@@ -6,4 +6,4 @@ spring:
   profiles: cloud
   platform:
     config:
-      uri: ${vcap.services.configserver.credentials.uri:http://localhost:8888}
+      uri: ${vcap.services.${PREFIX:}configserver.credentials.uri:http://localhost:8888}
