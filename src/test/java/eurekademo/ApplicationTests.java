@@ -1,4 +1,4 @@
-package demo;
+package eurekademo;
 
 import static org.junit.Assert.assertEquals;
 

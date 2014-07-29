@@ -10,4 +10,5 @@
 build
 bin
 /target/
-git.properties
+git.properties.idea
+*.iml
