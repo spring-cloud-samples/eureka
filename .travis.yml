@@ -1,12 +1,2 @@
 language: java
 script: mvn package -nsu -Dmaven.test.redirectTestOutputToFile=true
-after_success:
-- if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "Deployments are only done for
-  the master branch. "; exit 0; fi
-- echo "Deploying build $TRAVIS_BUILD_NUMBER to cloudfoundry"
-- ./cf/deploy.sh eureka .
-env:
-  global:
-  - APP=eureka
-  - secure: DSyd1G93cnf/diYIvj//yhBJ+kxinHWlxTScqqB0n7zwE0vJ4scm8TBUXx6ellQjtG5Hzwi3IuXNCkAZpRZ2efOhracopxrOQYHBaa9N1YZoFbW5ysvUb1HYte9UbmezRESy5iPBErj2Zl27VOewbZRw2SXwBmoKX49dlKa+KsA=
-  - secure: e3HrwjivzWnaW5MQC1OwI7TxANtLLpGTmN9z5JT3siJbqwbePGB3Lf7wI4kJfWQXDgX0/8dsDiZ/vGjyK9TatL02H+CF+lFE+PbyFP7ysQOhbVai6zR3V6XYFqmmHc/or6zyyQQAmnujuWruKghu1nT96PwAC/jD/R1MB4mEEXc=
