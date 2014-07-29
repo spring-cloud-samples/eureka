@@ -8,6 +8,7 @@ import com.netflix.config.ConfigurationManager;
 import com.netflix.discovery.shared.*;
 import com.netflix.discovery.shared.Application;
 import com.netflix.eureka.PeerAwareInstanceRegistry;
+import com.netflix.eureka.cluster.PeerEurekaNode;
 import com.netflix.eureka.resources.StatusResource;
 import com.netflix.eureka.util.StatusInfo;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.URI;
 import java.util.*;
 
 /**
@@ -25,6 +27,48 @@ public class EurekaController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String status(HttpServletRequest request, Map<String, Object> model) {
+        populateBase(request, model);
+
+        populateApps(model);
+
+        StatusInfo statusInfo = new StatusResource().getStatusInfo();
+        model.put("statusInfo", statusInfo);
+
+        populateInstanceInfo(model, statusInfo);
+
+        return "status";
+    }
+
+    @RequestMapping(value = "/lastn", method = RequestMethod.GET)
+    public String lastn(HttpServletRequest request, Map<String, Object> model) {
+        populateBase(request, model);
+        PeerAwareInstanceRegistry registery = PeerAwareInstanceRegistry.getInstance();
+
+        ArrayList<Map<String, Object>> lastNCanceled = new ArrayList<>();
+        List<Pair<Long, String>> list = registery.getLastNCanceledInstances();
+        for (Pair<Long, String> entry : list) {
+            lastNCanceled.add(registeredInstance(entry.second(), entry.first().longValue()));
+        }
+        model.put("lastNCanceled", lastNCanceled);
+
+        list = registery.getLastNRegisteredInstances();
+        ArrayList<Map<String, Object>> lastNRegistered = new ArrayList<>();
+        for (Pair<Long, String> entry : list) {
+            lastNRegistered.add(registeredInstance(entry.second(), entry.first().longValue()));
+        }
+        model.put("lastNRegistered", lastNRegistered);
+
+        return "lastn";
+    }
+
+    private Map<String, Object> registeredInstance(String id, long date) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("date", new Date(date));
+        return map;
+    }
+
+    private void populateBase(HttpServletRequest request, Map<String, Object> model) {
         String path = request.getContextPath();
         String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
@@ -33,14 +77,7 @@ public class EurekaController {
 
         populateHeader(model);
 
-        populateApps(model);
-
-        StatusInfo statusInfo = (new StatusResource()).getStatusInfo();
-        model.put("statusInfo", statusInfo);
-
-        populateInstanceInfo(model, statusInfo);
-
-        return "status";
+        populateNavbar(request, model);
     }
 
     private void populateHeader(Map<String, Object> model) {
@@ -59,6 +96,21 @@ public class EurekaController {
             model.put("availabilityZone", amazonInfo.get(AmazonInfo.MetaDataKey.availabilityZone));
             model.put("instanceId", amazonInfo.get(AmazonInfo.MetaDataKey.instanceId));
         }
+    }
+
+    private void populateNavbar(HttpServletRequest request, Map<String, Object> model) {
+        Map<String, String> replicas = new LinkedHashMap<>();
+        List<PeerEurekaNode> list = PeerAwareInstanceRegistry.getInstance().getReplicaNodes();
+        for (PeerEurekaNode node : list) {
+            try {
+                URI uri = new URI(node.getServiceUrl());
+                String href = "http://" + uri.getHost() + ":" + uri.getPort() + request.getContextPath();
+                replicas.put(uri.getHost(), href);
+            } catch(Exception e) {
+                //ignore?
+            }
+        }
+        model.put("replicas", replicas.entrySet());
     }
 
     private void populateApps(Map<String, Object> model) {
