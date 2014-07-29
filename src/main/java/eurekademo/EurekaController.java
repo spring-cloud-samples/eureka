@@ -1,9 +1,12 @@
 package eurekademo;
 
 import com.netflix.appinfo.AmazonInfo;
+import com.netflix.appinfo.ApplicationInfoManager;
 import com.netflix.appinfo.DataCenterInfo;
 import com.netflix.appinfo.InstanceInfo;
+import com.netflix.config.ConfigurationManager;
 import com.netflix.discovery.shared.*;
+import com.netflix.discovery.shared.Application;
 import com.netflix.eureka.PeerAwareInstanceRegistry;
 import com.netflix.eureka.resources.StatusResource;
 import com.netflix.eureka.util.StatusInfo;
@@ -28,11 +31,42 @@ public class EurekaController {
         model.put("time", new Date());
         model.put("basePath", basePath);
 
+        populateHeader(model);
+
+        populateApps(model);
+
+        StatusInfo statusInfo = (new StatusResource()).getStatusInfo();
+        model.put("statusInfo", statusInfo);
+
+        populateInstanceInfo(model, statusInfo);
+
+        return "status";
+    }
+
+    private void populateHeader(Map<String, Object> model) {
+        model.put("currentTime", StatusResource.getCurrentTimeAsString());
+        model.put("upTime", StatusInfo.getUpTime());
+        model.put("environment", ConfigurationManager.getDeploymentContext().getDeploymentEnvironment());
+        model.put("datacenter", ConfigurationManager.getDeploymentContext().getDeploymentDatacenter());
+        model.put("registry", PeerAwareInstanceRegistry.getInstance());
+        model.put("isBelowRenewThresold", PeerAwareInstanceRegistry.getInstance().isBelowRenewThresold() == 1);
+
+        DataCenterInfo info = ApplicationInfoManager.getInstance().getInfo().getDataCenterInfo();
+        if(info.getName() == DataCenterInfo.Name.Amazon) {
+            AmazonInfo amazonInfo = (AmazonInfo) info;
+            model.put("amazonInfo", amazonInfo);
+            model.put("amiId", amazonInfo.get(AmazonInfo.MetaDataKey.amiId));
+            model.put("availabilityZone", amazonInfo.get(AmazonInfo.MetaDataKey.availabilityZone));
+            model.put("instanceId", amazonInfo.get(AmazonInfo.MetaDataKey.instanceId));
+        }
+    }
+
+    private void populateApps(Map<String, Object> model) {
         List<com.netflix.discovery.shared.Application> sortedApplications = PeerAwareInstanceRegistry.getInstance().getSortedApplications();
 
         ArrayList<Map<String, Object>> apps = new ArrayList<>();
 
-        for(com.netflix.discovery.shared.Application app : sortedApplications) {
+        for(Application app : sortedApplications) {
             LinkedHashMap<String, Object> appData = new LinkedHashMap<>();
             apps.add(appData);
 
@@ -127,10 +161,9 @@ public class EurekaController {
         }
 
         model.put("apps", apps);
+    }
 
-        StatusInfo statusInfo = (new StatusResource()).getStatusInfo();
-        model.put("statusInfo", statusInfo);
-
+    private void populateInstanceInfo(Map<String, Object> model, StatusInfo statusInfo) {
         InstanceInfo instanceInfo = statusInfo.getInstanceInfo();
 
         Map<String,String> instanceMap = new HashMap<>();
@@ -147,7 +180,5 @@ public class EurekaController {
         }
 
         model.put("instanceInfo", instanceMap);
-
-        return "status";
     }
 }

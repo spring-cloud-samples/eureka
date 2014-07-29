@@ -16,8 +16,8 @@
   </head>
   
   <body id="one">
-    <jsp:include page="header.jsp" />
-    <jsp:include page="navbar.jsp" />
+    <#include "header.ftl">
+    <#include "navbar.ftl">
     <div id="content">
       <div class="sectionTitle">Instances currently registered with Eureka</div>
         <table id='instances' class="stripeable">

@@ -27,8 +27,8 @@
   </head>
   
   <body id="three">
-    <jsp:include page="header.jsp" />
-    <jsp:include page="navbar.jsp" />
+    <jsp:include page="header.ftl" />
+    <jsp:include page="navbar.ftl" />
     <div id="content">
 	<div id="tabs">
 	<ul>
