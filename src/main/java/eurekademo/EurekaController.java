@@ -36,7 +36,7 @@ public class EurekaController {
 
         populateInstanceInfo(model, statusInfo);
 
-        return "status";
+        return "eureka/status";
     }
 
     @RequestMapping(value = "/lastn", method = RequestMethod.GET)
@@ -58,7 +58,7 @@ public class EurekaController {
         }
         model.put("lastNRegistered", lastNRegistered);
 
-        return "lastn";
+        return "eureka/lastn";
     }
 
     private Map<String, Object> registeredInstance(String id, long date) {

@@ -22,14 +22,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.platform</groupId>
-				<artifactId>spring-platform-config</artifactId>
-				<version>1.0.0.BUILD-SNAPSHOT</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.platform</groupId>
-				<artifactId>spring-platform-netflix</artifactId>
+				<artifactId>spring-platform-starters</artifactId>
 				<version>1.0.0.BUILD-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -40,56 +33,34 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.platform</groupId>
-			<artifactId>spring-platform-netflix-core</artifactId>
+			<artifactId>spring-platform-starter-eureka</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.platform</groupId>
-			<artifactId>spring-platform-config-client</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-boot-starter-logging</artifactId>
-					<groupId>org.springframework.boot</groupId>
-				</exclusion>
-			</exclusions>
+			<artifactId>spring-platform-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.platform</groupId>
-			<artifactId>spring-platform-cloudfoundry</artifactId>
-			<version>1.0.0.BUILD-SNAPSHOT</version>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-servlet</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-boot-starter-logging</artifactId>
-					<groupId>org.springframework.boot</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-boot-starter-logging</artifactId>
-					<groupId>org.springframework.boot</groupId>
-				</exclusion>
-			</exclusions>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-servlet</artifactId>
-			<version>1.13</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-boot-starter-logging</artifactId>
+					<groupId>org.springframework.boot</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
 		<dependency>
 			<groupId>com.netflix.eureka</groupId>
 			<artifactId>eureka-core</artifactId>
