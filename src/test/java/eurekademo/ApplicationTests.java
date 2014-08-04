@@ -27,7 +27,7 @@ public class ApplicationTests {
 	@Test
 	public void catalogLoads() {
 		@SuppressWarnings("rawtypes")
-		ResponseEntity<Map> entity = new TestRestTemplate().getForEntity("http://localhost:" + port + "/v2/catalog", Map.class);
+		ResponseEntity<Map> entity = new TestRestTemplate().getForEntity("http://localhost:" + port + "/v2/apps", Map.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
 
