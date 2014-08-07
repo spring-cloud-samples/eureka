@@ -74,6 +74,56 @@
 			<groupId>ro.isdc.wro4j</groupId>
 			<artifactId>wro4j-extensions</artifactId>
 			<version>1.7.6</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jruby-core</artifactId>
+					<groupId>org.jruby</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jruby-stdlib</artifactId>
+					<groupId>org.jruby</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>gmaven-runtime-1.7</artifactId>
+					<groupId>org.codehaus.gmaven.runtime</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>closure-compiler</artifactId>
+					<groupId>com.google.javascript</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bourbon-gem-jar</artifactId>
+					<groupId>nz.co.edmi</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>sass-gems</artifactId>
+					<groupId>me.n4u.sass</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>less</artifactId>
+					<groupId>org.webjars</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>json2</artifactId>
+					<groupId>org.webjars</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>emberjs</artifactId>
+					<groupId>org.webjars</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>handlebars</artifactId>
+					<groupId>org.webjars</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>dojo-shrinksafe</artifactId>
+					<groupId>com.github.lltyk</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>coffee-script</artifactId>
+					<groupId>org.webjars</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.github.sommeri</groupId>
