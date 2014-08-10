@@ -31,10 +31,10 @@ import com.sun.jersey.spi.container.servlet.ServletContainer;
 @ComponentScan
 @Configuration
 @EnableAutoConfiguration
-public class Application extends WebMvcConfigurerAdapter {
+public class EurekaApplication extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(EurekaApplication.class, args);
 	}
 
 	@Bean

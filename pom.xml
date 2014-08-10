@@ -133,7 +133,7 @@
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>eurekademo.Application</start-class>
+		<start-class>eurekademo.EurekaApplication</start-class>
 		<java.version>1.7</java.version>
 	</properties>
 
