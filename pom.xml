@@ -142,6 +142,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<requiresUnpack>
+						<dependency>
+							<groupId>com.netflix.eureka</groupId>
+							<artifactId>eureka-core</artifactId>
+						</dependency>
+						<dependency>
+							<groupId>com.netflix.eureka</groupId>
+							<artifactId>eureka-client</artifactId>
+						</dependency>
+					</requiresUnpack>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>pl.project13.maven</groupId>
@@ -154,7 +166,7 @@
 		<repository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
-			<url>http://repo.spring.io/snapshot</url>
+			<url>http://repo.spring.io/libs-snapshot-local</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -162,7 +174,7 @@
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/milestone</url>
+			<url>http://repo.spring.io/libs-miletone-local</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -170,7 +182,7 @@
 		<repository>
 			<id>spring-releases</id>
 			<name>Spring Releases</name>
-			<url>http://repo.spring.io/release</url>
+			<url>http://repo.spring.io/libs-release-local</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -180,7 +192,7 @@
 		<pluginRepository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
-			<url>http://repo.spring.io/snapshot</url>
+			<url>http://repo.spring.io/libs-snapshot-local</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -188,7 +200,7 @@
 		<pluginRepository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/milestone</url>
+			<url>http://repo.spring.io/libs-milestone-local</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>

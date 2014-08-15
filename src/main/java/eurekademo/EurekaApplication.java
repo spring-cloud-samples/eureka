@@ -42,7 +42,7 @@ public class EurekaApplication extends WebMvcConfigurerAdapter {
 		FilterRegistrationBean bean = new FilterRegistrationBean();
 		bean.setFilter(new ServletContainer());
 		bean.addInitParameter("com.sun.jersey.config.property.packages",
-				"com.sun.jersey;com.netflix");
+				"com.netflix.discovery;com.netflix.eureka");
 		bean.setUrlPatterns(Lists.newArrayList("/v2/*"));
 		return bean;
 	}
