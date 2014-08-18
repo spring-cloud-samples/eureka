@@ -37,6 +37,16 @@ public class EurekaApplication extends WebMvcConfigurerAdapter {
 		SpringApplication.run(EurekaApplication.class, args);
 	}
 
+    @Bean
+    public EurekaInstanceRegisteredListener eurekaInstanceRegisteredListener() {
+        return new EurekaInstanceRegisteredListener();
+    }
+
+    @Bean
+    public EurekaInstanceRenewedListener eurekaInstanceRenewedListener() {
+        return new EurekaInstanceRenewedListener();
+    }
+
 	@Bean
 	public FilterRegistrationBean jersey() {
 		FilterRegistrationBean bean = new FilterRegistrationBean();

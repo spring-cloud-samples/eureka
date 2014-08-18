@@ -13,4 +13,10 @@ eureka:
     healthCheckUrlPath: /admin/health
   server:
     waitTimeInMsWhenSyncEmpty: 0
+
+#TODO: move to eureka
+spring:
+  boot:
+    admin:
+      url: http://localhost:8080
     

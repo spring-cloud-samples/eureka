@@ -22,6 +22,7 @@ import java.util.*;
 /**
  * Created by sgibb on 7/29/14.
  */
+//TODO: move to netflix-core
 @Controller
 public class EurekaController {
 
