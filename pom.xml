@@ -66,78 +66,40 @@
 			<artifactId>eureka-core</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ro.isdc.wro4j</groupId>
-			<artifactId>wro4j-extensions</artifactId>
-			<version>1.7.6</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>jruby-core</artifactId>
-					<groupId>org.jruby</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jruby-stdlib</artifactId>
-					<groupId>org.jruby</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>gmaven-runtime-1.7</artifactId>
-					<groupId>org.codehaus.gmaven.runtime</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>closure-compiler</artifactId>
-					<groupId>com.google.javascript</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>bourbon-gem-jar</artifactId>
-					<groupId>nz.co.edmi</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>sass-gems</artifactId>
-					<groupId>me.n4u.sass</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>less</artifactId>
-					<groupId>org.webjars</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>json2</artifactId>
-					<groupId>org.webjars</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>emberjs</artifactId>
-					<groupId>org.webjars</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>handlebars</artifactId>
-					<groupId>org.webjars</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>dojo-shrinksafe</artifactId>
-					<groupId>com.github.lltyk</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>coffee-script</artifactId>
-					<groupId>org.webjars</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.github.sommeri</groupId>
-			<artifactId>less4j</artifactId>
-			<version>1.8.0</version>
 		</dependency>
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>eurekademo.EurekaApplication</start-class>
 		<java.version>1.7</java.version>
+		<wro4j.version>1.7.6</wro4j.version>
 	</properties>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>target/generated-resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>wro/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -153,6 +115,25 @@
 							<artifactId>eureka-client</artifactId>
 						</dependency>
 					</requiresUnpack>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>ro.isdc.wro4j</groupId>
+				<artifactId>wro4j-maven-plugin</artifactId>
+				<version>${wro4j.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+					<destinationFolder>${basedir}/target/generated-resources/static/eureka/</destinationFolder>
+					<wroFile>${basedir}/src/main/resources/wro/wro.xml</wroFile>
+					<extraConfigFile>${basedir}/src/main/resources/wro/wro.properties</extraConfigFile>
 				</configuration>
 			</plugin>
 			<plugin>
