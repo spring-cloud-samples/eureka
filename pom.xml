@@ -11,12 +11,12 @@
 	<name>Eureka Server</name>
 	<description>Eureka Server demo project</description>
 
-	<parent>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starters</artifactId>
-		<version>1.0.0.BUILD-SNAPSHOT</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.1.5.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
 
 	<dependencyManagement>
 		<dependencies>
