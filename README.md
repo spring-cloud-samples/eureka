@@ -9,4 +9,4 @@ main method, or use "mvn spring-boot:run"). It will start up on port
 | Path             | Description  |
 |------------------|--------------|
 | /                | Home page (HTML UI) listing service registrations          |
-| /v2/apps         | Raw regsitration metadata |
+| /v2/apps         | Raw registration metadata |
