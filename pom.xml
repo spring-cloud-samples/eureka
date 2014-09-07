@@ -58,6 +58,13 @@
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
 			</plugin>
+	        <plugin>
+		      <!--skip deploy (this is just a test module) -->
+		      <artifactId>maven-deploy-plugin</artifactId>
+		      <configuration>
+		        <skip>true</skip>
+		      </configuration>
+	        </plugin>
 		</plugins>
 	</build>
 
