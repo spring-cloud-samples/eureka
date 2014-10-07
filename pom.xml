@@ -53,7 +53,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!-- TODO: shouldn't be required here, defined in spring-cloud-starters pom, but ignored -->
+                <!-- defined in spring-cloud-starters pom (as documentation hint), but needs to be repeated here -->
                 <configuration>
                     <requiresUnpack>
                         <dependency>
