@@ -1,8 +1,17 @@
 server:
   port: 8761
+#  servlet-path: /broker
+
+security:
+  user:
+    password: password
 
 management:
   context-path: /admin
+  
+logging:
+  level:
+    org.cloudfoundry: DEBUG
 
 eureka:
   client:
