@@ -1,21 +1,10 @@
 server:
   port: 8761
-#  servlet-path: /broker
-
-management:
-  context-path: /admin
-  
-logging:
-  level:
-    org.cloudfoundry: DEBUG
 
 eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-  instance:
-    statusPageUrlPath: /admin/info
-    healthCheckUrlPath: /admin/health
   server:
     waitTimeInMsWhenSyncEmpty: 0
     
