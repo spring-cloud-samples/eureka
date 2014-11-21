@@ -94,7 +94,7 @@
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/libs-miletone-local</url>
+			<url>http://repo.spring.io/libs-milestone-local</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
