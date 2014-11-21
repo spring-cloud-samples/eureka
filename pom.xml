@@ -12,9 +12,9 @@
 	<description>Eureka Server demo project</description>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.0.RC2</version>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-parent</artifactId>
+		<version>1.0.0.BUILD-SNAPSHOT</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -22,7 +22,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starters</artifactId>
+				<artifactId>spring-cloud-starter-parent</artifactId>
 				<version>1.0.0.BUILD-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -53,7 +53,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!-- defined in spring-cloud-starters pom (as documentation hint), but 
+				<!-- defined in spring-cloud-starter-parent pom (as documentation hint), but 
 					needs to be repeated here -->
 				<configuration>
 					<requiresUnpack>
