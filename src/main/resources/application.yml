@@ -1,5 +1,8 @@
 server:
   port: 8761
+security:
+  user:
+    password: ${eureka.password}
 
 eureka:
   client:
@@ -18,7 +21,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://127.0.0.1:8762/eureka/
+      defaultZone: http://user:${eureka.password}@127.0.0.1:8762/eureka/
 
 ---
 spring:
@@ -31,5 +34,5 @@ eureka:
     nonSecurePort: ${server.port}
   client:
     serviceUrl:
-      defaultZone: http://127.0.1.1:8761/eureka/
+      defaultZone: http://user:${eureka.password}@127.0.1.1:8761/eureka/
     
