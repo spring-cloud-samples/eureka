@@ -2,7 +2,7 @@ server:
   port: 8761
 security:
   user:
-    password: ${eureka.password}
+    password: ${eureka.password:${SECURITY_USER_PASSWORD:password}} # Don't use a default password in a real app
 
 eureka:
   client:
