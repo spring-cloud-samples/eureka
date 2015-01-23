@@ -35,4 +35,17 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://user:${eureka.password}@127.0.1.1:8761/eureka/
-    
+
+---
+spring:
+  profiles: local # connect to remote peer
+eureka:
+  instance:
+    hostname: ${localhost.hostname:${localhost.ngrok}.ngrok.com}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://user:${security.user.password}@${PREFIX:}eureka.cfapps.io/eureka/
+
+  
