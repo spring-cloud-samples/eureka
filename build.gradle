@@ -11,11 +11,12 @@ buildscript {
 
 apply plugin: 'spring-boot'
 apply plugin: 'java'
+apply plugin: 'idea'
 
 ext {
     name = 'Eureka Server'
     description = 'Eureka Server demo project' 
-    version='0.1'
+    version='0.0.1'
     sourceEncoding='UTF-8'
 }
 
@@ -29,8 +30,8 @@ repositories {
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.7'
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server:+'
-    compile 'org.springframework.boot:spring-boot-starter-security:+'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
+    compile 'org.springframework.boot:spring-boot-starter-security'
 
     compile 'ch.qos.logback:logback-classic'
     
