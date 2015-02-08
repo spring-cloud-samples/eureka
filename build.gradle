@@ -30,7 +30,7 @@ repositories {
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.7'
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server:+'
     compile 'org.springframework.boot:spring-boot-starter-security'
 
     compile 'ch.qos.logback:logback-classic'
