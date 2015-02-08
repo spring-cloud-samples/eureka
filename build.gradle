@@ -1,0 +1,43 @@
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE")
+    }
+}
+
+
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+
+ext {
+    name = 'Eureka Server'
+    description = 'Eureka Server demo project' 
+    version='0.1'
+    sourceEncoding='UTF-8'
+}
+
+repositories {
+    jcenter()
+    maven { url 'https://repo.spring.io/release/' }
+    maven { url "http://repo.spring.io/libs-snapshot-local" }
+    maven { url "http://repo.spring.io/libs-milestone-local" }
+    maven { url "http://repo.spring.io/libs-release-local" }
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server:+'
+    compile 'org.springframework.boot:spring-boot-starter-security:+'
+
+    compile 'ch.qos.logback:logback-classic'
+    
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile "junit:junit:4.11"
+}
+
+springBoot {
+    requiresUnpack = ['com.netflix.eureka:eureka-core','com.netflix.eureka:eureka-client']
+}
