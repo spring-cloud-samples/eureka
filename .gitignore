@@ -13,3 +13,4 @@ bin
 git.properties
 .idea
 *.iml
+.factorypath
