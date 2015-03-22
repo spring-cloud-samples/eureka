@@ -8,6 +8,7 @@
 .settings
 .springBeans
 .gradle
+!gradle-wrapper.jar
 build
 bin
 /target/

@@ -42,3 +42,7 @@ dependencies {
 springBoot {
     requiresUnpack = ['com.netflix.eureka:eureka-core','com.netflix.eureka:eureka-client']
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
