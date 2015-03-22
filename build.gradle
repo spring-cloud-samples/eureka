@@ -4,10 +4,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
     }
 }
-
 
 apply plugin: 'spring-boot'
 apply plugin: 'java'
@@ -32,9 +31,10 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.7'
     compile 'org.springframework.cloud:spring-cloud-starter-eureka-server:+'
     compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
 
     compile 'ch.qos.logback:logback-classic'
-    
+
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile "junit:junit:4.11"
 }
