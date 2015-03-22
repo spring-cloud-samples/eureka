@@ -1,2 +1,2 @@
 language: java
-script: mvn package -nsu -Dmaven.test.redirectTestOutputToFile=true
+script: gradle build
