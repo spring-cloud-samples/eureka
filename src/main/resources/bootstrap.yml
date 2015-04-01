@@ -3,4 +3,4 @@ spring:
     name: eureka
   cloud:
     config:
-      uri: ${vcap.services.${PREFIX:}configserver.credentials.uri:http://user:password@localhost:8888}
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
