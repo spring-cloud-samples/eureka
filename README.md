@@ -10,3 +10,10 @@ main method, or use "mvn spring-boot:run"). It will start up on port
 |------------------|--------------|
 | /                        | Home page (HTML UI) listing service registrations          |
 | /eureka/apps         | Raw registration metadata |
+
+## Docker Container
+There is a branch (`feature/docker`) that contains information about creating a Docker container contaning
+a running Eureka server.
+
+It uses a [Maven plugin](https://github.com/spring-cloud-samples/eureka/blob/feature/docker/pom.xml#L48) to 
+generate the Docker container.
