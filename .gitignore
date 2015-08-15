@@ -1,3 +1,4 @@
+
 *~
 #*
 *#
@@ -7,10 +8,15 @@
 .settings
 .springBeans
 .gradle
+!gradle-wrapper.jar
 build
 bin
 /target/
 git.properties
+
+# idea
 .idea
 *.iml
+*.iws
+*.ipr
 .factorypath
