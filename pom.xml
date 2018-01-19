@@ -63,7 +63,7 @@
 					<baseImage>openjdk:7-jre-alpine</baseImage>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
 					<exposes>8761</exposes>
-					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+					<entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
