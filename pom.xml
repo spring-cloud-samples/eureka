@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.2.RELEASE</version>
+		<version>2.6.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -29,6 +29,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -39,7 +43,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Finchley.BUILD-SNAPSHOT</version>
+				<version>2021.0.0</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -58,7 +62,7 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.2.3</version>
+				<version>1.2.2</version>
 				<configuration>
 					<baseImage>openjdk:8-jre-alpine</baseImage>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
@@ -76,27 +80,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!-- defined in spring-cloud-starter-parent pom (as documentation hint), 
-					but needs to be repeated here -->
-				<configuration>
-					<requiresUnpack>
-						<dependency>
-							<groupId>com.netflix.eureka</groupId>
-							<artifactId>eureka-core</artifactId>
-						</dependency>
-						<dependency>
-							<groupId>com.netflix.eureka</groupId>
-							<artifactId>eureka-client</artifactId>
-						</dependency>
-					</requiresUnpack>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>pl.project13.maven</groupId>
-				<artifactId>git-commit-id-plugin</artifactId>
-				<configuration>
-				  <failOnNoGitDirectory>false</failOnNoGitDirectory>
-				</configuration>
 			</plugin>
 			<plugin>
 				<!--skip deploy (this is just a test module) -->
