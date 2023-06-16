@@ -2,10 +2,20 @@ server:
   port: 8761
 
 spring:
+  application:
+    name: eureka
   security:
     user:
       name: admin
       password: pwd
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 logging:
   level:
