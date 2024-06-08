@@ -2,8 +2,10 @@ name: eureka
 
 on:
   push:
+    branches:
+      - "develop"
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   ci:
