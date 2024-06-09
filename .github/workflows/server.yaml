@@ -62,3 +62,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+    
+      - uses: mikefarah/yq@v4.43.1
+        with:
+          cmd: yq -i '.image.tag=${{ steps.meta.outputs.version }}' helm/server/values.yaml
