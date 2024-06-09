@@ -13,7 +13,8 @@ image:
   tag: "1.0.1"
 service:
   name: eureka-server
-  type: ClusterIP
+  # type: ClusterIP
+  type: LoadBalancer
   port: 8761
 livenessProbe:
   httpGet:

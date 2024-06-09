@@ -8,6 +8,7 @@ data:
       port: 0
     eureka:
       client:
+        registerWithEureka: true
         serviceUrl:
           defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
       instance:

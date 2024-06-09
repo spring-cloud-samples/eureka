@@ -12,7 +12,7 @@ image:
   tag: "1.0.2"
 envs:
   - name: EUREKA_URI
-    value: "http://eureka-server:8761"
+    value: "http://eureka-server:8761/eureka/"
 # service:
 #   name: eureka-client
 #   type: ClusterIP
