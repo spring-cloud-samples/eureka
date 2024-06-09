@@ -1,0 +1,25 @@
+apiVersion: v1
+data:
+  application.yml: |
+    server:
+      port: 8761
+    spring:
+      application:
+        name: eureka-server
+      config:
+        import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+    eureka:
+      client:
+        registerWithEureka: false
+        fetchRegistry: false
+      server:
+        waitTimeInMsWhenSyncEmpty: 0
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "*"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: server-application-properties
