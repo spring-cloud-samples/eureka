@@ -1,0 +1,9 @@
+dependencies:
+- name: eureka-server
+  repository: file://../server
+  version: 0.1.0
+- name: eureka-client
+  repository: file://../client
+  version: 0.1.0
+digest: sha256:822e177e50d5129549b87e446deda8f43934cfbe37d24477d1fa829e8526fbc2
+generated: "2024-06-09T13:34:25.496849898+03:00"

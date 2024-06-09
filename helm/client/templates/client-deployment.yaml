@@ -5,21 +5,21 @@ metadata:
   labels:
     {{- include "helm.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.client.autoscaling.enabled }}
-  replicas: {{ .Values.client.replicaCount }}
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
       {{- include "helm.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.client.podAnnotations }}
+      {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
         {{- include "helm.labels" . | nindent 8 }}
-        {{- with .Values.client.podLabels }}
+        {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
@@ -33,28 +33,28 @@ spec:
       containers:
         - name: eureka-client
           securityContext:
-            {{- toYaml .Values.client.securityContext | nindent 12 }}
-          image: "{{ .Values.client.image.repository }}:{{ .Values.client.image.tag }}"
-          imagePullPolicy: {{ .Values.client.image.pullPolicy }}
-          {{- with .Values.client.envs }}
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.envs }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
         #   ports:
         #     - name: http
-        #       containerPort: { { .Values.client.service.port } }
+        #       containerPort: { { .Values.service.port } }
         #       protocol: TCP
         #   livenessProbe:
-        #     { {- toYaml .Values.client.service.livenessProbe | nindent 12 }}
+        #     { {- toYaml .Values.service.livenessProbe | nindent 12 }}
         #   readinessProbe:
-        #     { {- toYaml .Values.client.service.readinessProbe | nindent 12 }}
+        #     { {- toYaml .Values.service.readinessProbe | nindent 12 }}
           resources:
-            {{- toYaml .Values.client.resources | nindent 12 }}
-          {{- with .Values.client.volumeMounts }}
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.client.volumes }}
+      {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}
