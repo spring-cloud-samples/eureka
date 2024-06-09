@@ -71,12 +71,77 @@ server:
   #   mountPath: "/etc/foo"
   #   readOnly: true
 
-# client:
-#   image:
-#     repository: ghcr.io/yevgen-grytsay/eureka-client
-#     pullPolicy: IfNotPresent
-#     # Overrides the image tag whose default is the chart appVersion.
-#     tag: "1.0.0"
+client:
+  replicaCount: 1
+  podAnnotations: {}
+  podLabels: {}
+  image:
+    repository: ghcr.io/yevgen-grytsay/eureka-client
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "1.0.2"
+  envs:
+    - name: EUREKA_URI
+      value: "http://eureka-server:8761"
+  # service:
+  #   name: eureka-client
+  #   type: ClusterIP
+  #   port: 8761
+  livenessProbe:
+    {}
+    # httpGet:
+    #   path: /
+    #   port: http
+  readinessProbe:
+    {}
+    # httpGet:
+    #   path: /
+    #   port: http
+  securityContext:
+    {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+  resources:
+    {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+  # Additional volumes on the output Deployment definition.
+  volumes:
+    - name: client-application-properties-volume
+      configMap:
+        name: client-application-properties
+
+  # - name: foo
+  #   secret:
+  #     secretName: mysecret
+  #     optional: false
+
+  # Additional volumeMounts on the output Deployment definition.
+  volumeMounts:
+    - name: client-application-properties-volume
+      mountPath: /application.yml
+      subPath: application.yml
+  # - name: foo
+  #   mountPath: "/etc/foo"
+  #   readOnly: true
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
 
 imagePullSecrets: []
 nameOverride: ""
