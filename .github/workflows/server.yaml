@@ -16,6 +16,9 @@ jobs:
       current_tag: ${{ steps.get_tag.outputs.current_tag }}
 
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        
       - id: get_tag
         run: echo "current_tag=$(git tag -l --contains ${GITHUB_SHA} | head -n1)" >> "$GITHUB_OUTPUT"
 
