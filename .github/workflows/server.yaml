@@ -30,7 +30,7 @@ jobs:
       REGISTRY: ghcr.io
 
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
@@ -65,4 +65,11 @@ jobs:
     
       - uses: mikefarah/yq@v4.43.1
         with:
-          cmd: yq -i '.image.tag=${{ steps.meta.outputs.version }}' helm/server/values.yaml
+          cmd: yq -i '.image.tag="${{ steps.meta.outputs.version }}"' helm/server/values.yaml
+      
+      - run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add helm/values.yaml
+          git commit -m "update version ${{ steps.meta.outputs.version }}"
+          git push
