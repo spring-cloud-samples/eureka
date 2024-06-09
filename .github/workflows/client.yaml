@@ -1,4 +1,4 @@
-name: eureka
+name: eureka-client
 
 on:
   push:
@@ -10,6 +10,19 @@ on:
 jobs:
   ci:
     name: CI
+    runs-on: ubuntu-latest
+    container:
+      image: gradle:8.8.0-jdk17
+    
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        run: ./gradlew clean test -info
+
+  cd:
+    name: CD
     runs-on: ubuntu-latest
 
     env:

@@ -63,13 +63,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
     
-      - uses: mikefarah/yq@v4.43.1
-        with:
-          cmd: yq -i '.image.tag="${{ steps.meta.outputs.version }}"' helm/server/values.yaml
+      # - uses: mikefarah/yq@v4.43.1
+      #   with:
+      #     cmd: yq -i '.image.tag="${{ steps.meta.outputs.version }}"' helm/server/values.yaml
       
-      - run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add helm/server/values.yaml
-          git commit -m "update version ${{ steps.meta.outputs.version }}"
-          git push
+      # - run: |
+      #     git config user.name "${GITHUB_ACTOR}"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
+      #     git add helm/server/values.yaml
+      #     git commit -m "update version ${{ steps.meta.outputs.version }}"
+      #     git push
