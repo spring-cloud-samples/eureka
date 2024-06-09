@@ -29,7 +29,8 @@ jobs:
         with:
           images: ghcr.io/yevgen-grytsay/eureka-server
           tags: |
-            type=semver,prefix=server-,pattern={{version}}
+            type=match,pattern=server-v(.*),group=1
+            type=semver,pattern={{version}}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
