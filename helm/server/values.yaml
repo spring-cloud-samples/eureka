@@ -10,7 +10,7 @@ image:
   repository: ghcr.io/yevgen-grytsay/eureka-server
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.0.1"
+  tag: "1.0.8"
 service:
   name: eureka-server
   # type: ClusterIP
