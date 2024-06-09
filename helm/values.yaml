@@ -18,7 +18,7 @@ server:
     repository: ghcr.io/yevgen-grytsay/eureka-server
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "1.0.0"
+    tag: "1.0.1"
   service:
     name: eureka-server
     type: ClusterIP
@@ -56,9 +56,6 @@ server:
     - name: application-properties
       configMap:
         name: server-application-properties
-        items:
-          - key: application.yml
-            path: application.yml
 
   # - name: foo
   #   secret:
@@ -68,7 +65,8 @@ server:
   # Additional volumeMounts on the output Deployment definition.
   volumeMounts:
     - name: application-properties
-      mountPath: /
+      mountPath: /application.yml
+      subPath: application.yml
   # - name: foo
   #   mountPath: "/etc/foo"
   #   readOnly: true
