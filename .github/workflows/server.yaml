@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/yevgen-grytsay/eureka
+          images: ghcr.io/yevgen-grytsay/eureka-server
           tags: |
             type=semver,pattern={{version}}
 
@@ -41,6 +41,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          file: Dockerfile.server
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
