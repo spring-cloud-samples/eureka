@@ -40,14 +40,14 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-        #   ports:
-        #     - name: http
-        #       containerPort: { { .Values.service.port } }
-        #       protocol: TCP
-        #   livenessProbe:
-        #     { {- toYaml .Values.service.livenessProbe | nindent 12 }}
-        #   readinessProbe:
-        #     { {- toYaml .Values.service.readinessProbe | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            {{- toYaml .Values.service.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.service.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}

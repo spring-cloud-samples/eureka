@@ -5,7 +5,7 @@ data:
       application:
         name: eureka-client
     server:
-      port: 0
+      port: 8761
     eureka:
       client:
         registerWithEureka: true

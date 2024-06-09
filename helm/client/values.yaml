@@ -13,20 +13,18 @@ image:
 envs:
   - name: EUREKA_URI
     value: "http://eureka-server:8761/eureka/"
-# service:
-#   name: eureka-client
-#   type: ClusterIP
-#   port: 8761
+service:
+  name: eureka-client
+  type: LoadBalancer
+  port: 8761
 livenessProbe:
-  {}
-  # httpGet:
-  #   path: /
-  #   port: http
+  httpGet:
+    path: /
+    port: http
 readinessProbe:
-  {}
-  # httpGet:
-  #   path: /
-  #   port: http
+  httpGet:
+    path: /
+    port: http
 securityContext:
   {}
   # capabilities:
